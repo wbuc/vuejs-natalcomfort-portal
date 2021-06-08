@@ -1,18 +1,19 @@
 <template>
   <v-app>
-    <base-app-bar />
+    <base-drawer />
 
     <base-view />
   </v-app>
 </template>
 
 <script>
-  export default {
-    name: 'BaseLayout',
+export default {
+  name: "BaseLayout",
 
-    components: {
-      BaseAppBar: () => import('./AppBar'),
-      BaseView: () => import('./View'),
-    },
-  }
+  components: {
+    //BaseAppBar: () => import('./AppBar'),
+    BaseView: () => import("./View"),
+    BaseDrawer: () => import("./Drawer"),
+  },
+};
 </script>
