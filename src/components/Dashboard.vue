@@ -19,14 +19,19 @@
           <template v-slot:title="{ item }">{{ item.title }}</template>
           <template v-slot:detail="{ item }">{{ item.description }}</template>
           <template v-slot:actions="{ item }">
-            <v-btn
+            <v-chip v-if="item.status == 1" color="orange" small label outlined>
+              Submitted
+            </v-chip>
+            <v-chip
+              v-if="item.status == 2"
+              color="success"
               small
-              icon
-              plain
-              @click="openOrder(item)"
-              v-bind="attrs"
-              v-on="on"
+              label
+              outlined
             >
+              Complete
+            </v-chip>
+            <v-btn class="ml-2" small icon plain @click="openOrder(item)">
               <v-icon small color="">mdi-open-in-new</v-icon>
             </v-btn>
             <!-- <v-tooltip top>
@@ -125,10 +130,15 @@ export default {
   data() {
     return {
       orderList: [
-        { id: "1", title: "Order 1" },
-        { id: "2", title: "Order 2", description: "This is some more detail!" },
-        { id: "3", title: "Order 3" },
-        { id: "4", title: "Order 4" },
+        { id: "1", title: "Order 1", status: "1" },
+        {
+          id: "2",
+          title: "Order 2",
+          description: "This is some more detail!",
+          status: "2",
+        },
+        { id: "3", title: "Order 3", status: "2" },
+        { id: "4", title: "Order 4", status: "2" },
       ],
       orderItem: {},
       notification: { show: false, multiLine: true, text: null },
