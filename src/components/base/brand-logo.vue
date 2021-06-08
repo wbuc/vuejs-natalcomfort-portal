@@ -1,15 +1,28 @@
 <template>
   <div style="width: 100%">
-    <v-toolbar-title
-      v-if="!large"
-      class="text-uppercase no-cursor"
-      :class="`${color} text-${position}`"
-    >
-      <span class="font-weight-light" style="border-bottom: solid 1px"
-        >Natal</span
+    <div v-if="!large">
+      <v-toolbar-title
+        class="text-uppercase no-cursor"
+        :class="`${color} text-${position}`"
       >
-      <span style="border-bottom: solid 1px">Comfort</span>
-    </v-toolbar-title>
+        <span class="font-weight-light" style="border-bottom: solid 1px"
+          >Natal</span
+        >
+        <span style="border-bottom: solid 1px">Comfort</span>
+      </v-toolbar-title>
+      <div
+        class="
+          grey--text
+          subtitle-1
+          font-weight-light
+          text-center text-uppercase
+          no-cursor
+        "
+      >
+        Portal
+      </div>
+    </div>
+
     <div
       v-if="large"
       class="text-uppercase display-1 no-cursor"
@@ -20,6 +33,18 @@
         >Natal</span
       >
       <span style="border-bottom: solid 3px">Comfort</span>
+      <div
+        class="
+          grey--text
+          font-weight-light
+          headline
+          text-center text-uppercase
+          no-cursor
+          mt-2
+        "
+      >
+        Portal
+      </div>
     </div>
   </div>
 </template>
