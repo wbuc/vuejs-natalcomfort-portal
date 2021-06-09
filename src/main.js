@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store'
+import axios from 'axios'
 import vuetify from './plugins/vuetify'
 import './plugins'
 import firebase from "firebase/app";
 
 Vue.config.productionTip = false
 
+Vue.prototype.$axios = axios;
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -20,9 +23,17 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// Ensures logged in user is set before the app loads
+let app;
+firebase.auth().onAuthStateChanged(user => {
+    console.log(user);
+    if (! app) {
+        app = new Vue({
+            router,
+            store,
+            vuetify,
+            render: h => h(App)
+        }).$mount('#app')
+    }
 
-new Vue({
-    router,
-    vuetify,
-    render: h => h(App)
-}).$mount('#app')
+});

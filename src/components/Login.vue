@@ -64,6 +64,7 @@
 
 <script>
 import firebase from "firebase/app";
+import "firebase/auth";
 
 export default {
   name: "Login",
@@ -80,17 +81,17 @@ export default {
     };
   },
   methods: {
-    submit() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.form.email, this.form.password)
-        .then((data) => {
-          console.log(data);
-          this.$router.replace({ name: "Dashboard" });
-        })
-        .catch((err) => {
-          this.error = err.message;
-        });
+    async submit() {
+      try {
+        const data = await firebase
+          .auth()
+          .signInWithEmailAndPassword(this.form.email, this.form.password);
+        console.log(data);
+
+        this.$router.replace({ name: "home" });
+      } catch (err) {
+        this.error.push(err.message);
+      }
     },
     showRegister() {
       this.$router.push({ name: "register" });

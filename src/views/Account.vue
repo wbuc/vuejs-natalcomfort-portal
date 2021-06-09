@@ -1,13 +1,13 @@
 <template>
   <v-container fluid>
-    <v-row justify="center" class="mt-4">
+    <v-row justify="center">
       <v-col
         :xs="fieldSize.xlarge"
         :sm="fieldSize.xlarge"
         :md="fieldSize.xlarge"
         :lg="fieldSize.large"
       >
-        <Dashboard></Dashboard>
+        <Account></Account>
       </v-col>
     </v-row>
   </v-container>
@@ -15,10 +15,10 @@
 
 <script>
 export default {
-  name: "Dashboard-view",
+  name: "Account-view",
 
   components: {
-    Dashboard: () => import("@/components/Dashboard"),
+    Account: () => import("@/components/Account"),
   },
   data() {
     return {

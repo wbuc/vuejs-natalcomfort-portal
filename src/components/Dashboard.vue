@@ -19,19 +19,13 @@
           <template v-slot:title="{ item }">{{ item.title }}</template>
           <template v-slot:detail="{ item }">{{ item.description }}</template>
           <template v-slot:actions="{ item }">
-            <v-chip v-if="item.status == 1" color="orange" small label outlined>
+            <v-chip v-if="item.status == 1" color="info" small label outlined>
               Submitted
             </v-chip>
-            <v-chip
-              v-if="item.status == 2"
-              color="success"
-              small
-              label
-              outlined
-            >
+            <v-chip v-if="item.status == 2" color="success" small label>
               Complete
             </v-chip>
-            <v-btn class="ml-2" small icon plain @click="openOrder(item)">
+            <v-btn class="ml-3" small icon plain @click="openOrder(item)">
               <v-icon small color="">mdi-open-in-new</v-icon>
             </v-btn>
             <!-- <v-tooltip top>

@@ -1,6 +1,8 @@
 // Imports
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from "firebase/app";
+import "firebase/auth";
 
 Vue.use(Router)
 
@@ -35,8 +37,18 @@ const router = new Router({
                     component: () => import ('@/views/home/Index.vue')
                 }, {
                     path: '',
-                    name: 'Home',
-                    component: () => import ('@/views/Dashboard.vue')
+                    name: 'home',
+                    component: () => import ('@/views/Dashboard.vue'),
+                    meta: {
+                        requireAuth: true
+                    }
+                }, {
+                    path: '/account',
+                    name: 'account',
+                    component: () => import ('@/views/Account.vue'),
+                    meta: {
+                        requireAuth: true
+                    }
                 },
             ]
         }, {
@@ -55,6 +67,25 @@ const router = new Router({
             ]
         },
     ]
+})
+
+
+router.beforeEach((to, from, next) => {
+
+    const requiresAuth = to.matched.some(record => record.meta.requireAuth);
+    const isAuthenticated = firebase.auth().currentUser;
+
+
+    if (requiresAuth && ! isAuthenticated) {
+
+        next({name: 'login'});
+    } else {
+        next();
+    }
+
+    console.log(from.name);
+    console.log(isAuthenticated);
+
 })
 
 export default router

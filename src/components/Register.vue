@@ -24,6 +24,17 @@
               flat
               hide-details
             ></v-text-field>
+            <v-text-field
+              label="Practice"
+              name="Practice"
+              class="mb-4"
+              outlined
+              type="text"
+              autocomplete="off"
+              v-model="form.practice"
+              flat
+              hide-details
+            ></v-text-field>
 
             <v-text-field
               label="Email address"
@@ -78,6 +89,7 @@
 
 <script>
 import firebase from "firebase/app";
+import "firebase/auth";
 
 export default {
   name: "Register",
@@ -85,6 +97,7 @@ export default {
     return {
       form: {
         name: "",
+        practice: "",
         email: "",
         password: "",
       },
@@ -95,20 +108,17 @@ export default {
     };
   },
   methods: {
-    submit() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.form.email, this.form.password)
-        .then((data) => {
-          data.user
-            .updateProfile({
-              displayName: this.form.name,
-            })
-            .then(() => {});
-        })
-        .catch((err) => {
-          this.error = err.message;
-        });
+    async submit() {
+      try {
+        const user = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.form.email, this.form.password);
+        console.log(user);
+
+        this.$router.replace({ name: "home" });
+      } catch (err) {
+        this.error.push(err.message);
+      }
     },
     showLogin() {
       this.$router.push({ name: "login" });
@@ -116,3 +126,4 @@ export default {
   },
 };
 </script>
+

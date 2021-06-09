@@ -36,6 +36,7 @@
           <v-btn
             :ripple="config.ripple"
             justify-end
+            @click="signOut"
             plain
             color=""
             class="text-capitalize"
@@ -48,17 +49,26 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+//import { mapGetters } from "vuex";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 export default {
   name: "Layout.Drawer",
   props: { drawer: { default: true } },
   computed: {
-    ...mapGetters(["user", "isTrial"]),
+    // ...mapGetters(["user", "isTrial"]),
   },
-  methods: {},
+  methods: {
+    async signOut() {
+      const data = await firebase.auth().signOut();
+      console.log(data);
+      this.$router.replace({ name: "login" });
+    },
+  },
   data() {
     return {
+      loggedIn: false,
       routes: [
         {
           text: "Dashboard",
@@ -68,7 +78,7 @@ export default {
         },
         {
           text: "Account",
-          icon: "mdi-exit-to-app",
+          icon: "mdi-cog",
           color: "",
           routeUrl: "/account",
         },
@@ -80,9 +90,9 @@ export default {
     };
   },
   created() {
-    // this.$store.dispatch("getRoleRoutes").then((data) => {
-    //   this.roleRoutes = Object.freeze(data);
-    // });
+    firebase.auth().onAuthStateChanged((user) => {
+      this.loggedIn = !!user;
+    });
   },
   mounted: function () {
     // this.$vuetify.theme.dark = this.user.theme === "dark" ? true : false;
