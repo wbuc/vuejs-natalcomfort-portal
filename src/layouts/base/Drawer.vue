@@ -2,7 +2,7 @@
   <v-card>
     <v-navigation-drawer v-model="drawer" app clipped>
       <Base-Brand-Logo position="center" class="my-6"></Base-Brand-Logo>
-
+      <!-- <Base-Drawer-Menu :user="user"></Base-Drawer-Menu> -->
       <v-list dense>
         <template v-for="(link, index) in routes">
           <v-divider v-if="link.divider" :key="index" class="my-3"></v-divider>
@@ -24,14 +24,14 @@
       </v-list>
       <template v-slot:append>
         <v-layout class="pb-3">
-          <v-btn
+          <!-- <v-btn
             :ripple="config.ripple"
             justify-start
             plain
             color=""
             class="text-capitalize"
             ><v-icon>mdi-cog</v-icon></v-btn
-          >
+          > -->
           <v-spacer></v-spacer>
           <v-btn
             :ripple="config.ripple"
@@ -52,7 +52,9 @@
 //import { mapGetters } from "vuex";
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
+const db = firebase.firestore();
 export default {
   name: "Layout.Drawer",
   props: { drawer: { default: true } },
@@ -69,6 +71,7 @@ export default {
   data() {
     return {
       loggedIn: false,
+      user: null,
       routes: [
         {
           text: "Dashboard",
@@ -89,10 +92,16 @@ export default {
       },
     };
   },
-  created() {
+  async created() {
     firebase.auth().onAuthStateChanged((user) => {
       this.loggedIn = !!user;
     });
+
+    const { uid } = firebase.auth().currentUser;
+    const profileRef = await db.collection("profiles").doc(uid);
+    const profile = await profileRef.get();
+    this.user = profile.data();
+    console.log(profile.data());
   },
   mounted: function () {
     // this.$vuetify.theme.dark = this.user.theme === "dark" ? true : false;

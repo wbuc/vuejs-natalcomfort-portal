@@ -6,13 +6,14 @@
     :overlay-opacity="config.overlayOpacity"
     :overlay-color="config.overlayColor"
     :persistent="config.persistent"
+    scrollable
   >
     <v-card>
       <v-card-title class="headline font-weight-light py-5" primary-title>
         <slot name="title"></slot>
       </v-card-title>
 
-      <v-card-text class="pt-0">
+      <v-card-text class="pt-0" style="max-height: 500px">
         <slot></slot>
       </v-card-text>
 
@@ -46,7 +47,7 @@ export default {
       Type: Object,
       default: () => {
         return {
-          width: 600,
+          width: 800,
           maxWidth: 1200,
           overlayOpacity: 0.7,
           overlayColor: "#686868",
@@ -91,4 +92,23 @@ export default {
 </script>
 
 <style>
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 </style>

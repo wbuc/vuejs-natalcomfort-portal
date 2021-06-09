@@ -90,6 +90,9 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
+
+const db = firebase.firestore();
 
 export default {
   name: "Register",
@@ -110,9 +113,15 @@ export default {
   methods: {
     async submit() {
       try {
-        const user = await firebase
+        const { user } = await firebase
           .auth()
           .createUserWithEmailAndPassword(this.form.email, this.form.password);
+
+        await db
+          .collection("profiles")
+          .doc(user.uid)
+          .set({ name: this.form.name, practice: this.form.practice, role: 2 });
+
         console.log(user);
 
         this.$router.replace({ name: "home" });
