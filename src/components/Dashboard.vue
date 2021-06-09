@@ -101,10 +101,15 @@
             </v-row>
             <template v-if="orderItem.status == '2'">
               <v-row>
-                <div class="title mt-3 mb-1 grey--text text--darken-3">
+                <div
+                  class="title mt-5 mb-3 grey--text text--darken-3"
+                  style="width: 100%"
+                >
                   Supplier Detail
+                  <v-divider></v-divider>
                 </div>
               </v-row>
+
               <v-row>
                 <v-col cols="6" class="py-0 pl-0">
                   <Base-Page-Input title="Tracking Number">
@@ -153,11 +158,32 @@
                   ></v-text-field>
                 </Base-Page-Input>
               </v-row>
+              <v-row>
+                <Base-Page-Input title="Supplier Notes">
+                  <v-textarea
+                    type="text"
+                    v-model="orderItem.supplierNote"
+                    autocomplete="off"
+                    outlined
+                    background-color="transparent"
+                    flat
+                    readonly
+                    rows="3"
+                    solo
+                    dense
+                    hide-details
+                  ></v-textarea>
+                </Base-Page-Input>
+              </v-row>
             </template>
 
             <v-row>
-              <div class="title mt-3 mb-1 grey--text text--darken-3">
+              <div
+                class="title mt-5 mb-3 grey--text text--darken-3"
+                style="width: 100%"
+              >
                 Customer Detail
+                <v-divider></v-divider>
               </div>
 
               <Base-Page-Input title="Full name">
