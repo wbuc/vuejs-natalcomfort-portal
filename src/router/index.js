@@ -71,7 +71,7 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
-
+    document.title = 'Portal';
     const requiresAuth = to.matched.some(record => record.meta.requireAuth);
     const isAuthenticated = firebase.auth().currentUser;
 
