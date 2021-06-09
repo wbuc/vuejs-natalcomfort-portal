@@ -5,14 +5,20 @@
         class="text-uppercase no-cursor"
         :class="`${color} text-${position}`"
       >
-        <span class="font-weight-light" style="border-bottom: solid 1px"
+        <!-- <span class="font-weight-light" style="border-bottom: solid 1px"
           >Natal</span
-        >
-        <span style="border-bottom: solid 1px">Comfort</span>
+        > -->
+        <span style="border-bottom: solid 1px">Natal Comfort</span>
       </v-toolbar-title>
+      <!-- <v-img
+        src="@/assets/nc_logo.png"
+        max-width="100px"
+        max-height="800px"
+        justify-end
+      ></v-img> -->
       <div
         class="
-          grey--text
+          accent--text
           subtitle-1
           font-weight-light
           text-center text-uppercase
@@ -29,13 +35,13 @@
       style="text-align: center"
       :class="color"
     >
-      <span class="font-weight-light" style="border-bottom: solid 3px"
+      <!-- <span class="font-weight-light" style="border-bottom: solid 3px"
         >Natal</span
-      >
-      <span style="border-bottom: solid 3px">Comfort</span>
+      > -->
+      <span style="border-bottom: solid 3px">Natal Comfort</span>
       <div
         class="
-          grey--text
+          accent--text
           font-weight-light
           headline
           text-center text-uppercase
