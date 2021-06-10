@@ -11,7 +11,7 @@ export default {
   name: "BaseLayout",
 
   components: {
-    //BaseAppBar: () => import('./AppBar'),
+    // BaseAppBar: () => import("./AppBar"),
     BaseView: () => import("./View"),
     BaseDrawer: () => import("./Drawer"),
   },
