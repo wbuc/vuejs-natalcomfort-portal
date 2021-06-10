@@ -301,6 +301,7 @@ export default {
   name: "Dashboard",
   data() {
     return {
+      currentUserId: null,
       orderList: [],
       orderItem: {
         orderNumber: "",
@@ -383,11 +384,14 @@ export default {
       this.setDialogContext("Create new order", "createNewOrder");
     },
     generateOrderNumber() {
+      // this.currentUserId
+      console.log(this.currentUserId);
+      const u = this.currentUserId.substring(0, 3);
       const d = new Date();
       const t = d.getTime().toString();
       const sub = t.substring(8, 20);
       const rnd = Math.floor(Math.random() * 1000 + 1);
-      return `AM${sub}${rnd}`;
+      return `AM${u}-${sub}${rnd}`;
     },
     getEmptyOrder() {
       return {
@@ -485,6 +489,7 @@ export default {
     },
   },
   async created() {
+    this.currentUserId = firebase.auth().currentUser.uid;
     this.refreshOrderList();
     this.getLookupData();
   },
