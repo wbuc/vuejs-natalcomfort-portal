@@ -5,17 +5,14 @@
         class="text-uppercase no-cursor"
         :class="`${color} text-${position}`"
       >
-        <!-- <span class="font-weight-light" style="border-bottom: solid 1px"
-          >Natal</span
-        > -->
-        <span style="border-bottom: solid 1px">Natal Comfort</span>
+        <!-- <span style="border-bottom: solid 1px">Natal Comfort</span> -->
       </v-toolbar-title>
-      <!-- <v-img
+      <v-img
         src="@/assets/nc_logo.png"
-        max-width="100px"
-        max-height="800px"
+        :aspect-ratio="16 / 9"
+        class="center"
         justify-end
-      ></v-img> -->
+      ></v-img>
       <div
         class="
           accent--text
@@ -38,7 +35,8 @@
       <!-- <span class="font-weight-light" style="border-bottom: solid 3px"
         >Natal</span
       > -->
-      <span style="border-bottom: solid 3px">Natal Comfort</span>
+      <!-- <span style="border-bottom: solid 3px">Natal Comfort</span> -->
+      <v-img src="@/assets/nc_logo.png" class="center" justify-end></v-img>
       <div
         class="
           accent--text
@@ -46,7 +44,6 @@
           headline
           text-center text-uppercase
           no-cursor
-          mt-2
         "
       >
         Portal
@@ -78,5 +75,11 @@ export default {
 <style scoped>
 .no-cursor {
   cursor: default;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }
 </style>

@@ -2,7 +2,7 @@
   <v-card>
     <v-navigation-drawer v-model="drawer" app clipped>
       <Base-Brand-Logo position="center" class="my-6"></Base-Brand-Logo>
-      <!-- <Base-Drawer-Menu :user="user"></Base-Drawer-Menu> -->
+      <Base-Drawer-Menu :user="user"></Base-Drawer-Menu>
       <v-list dense>
         <template v-for="(link, index) in routes">
           <v-divider v-if="link.divider" :key="index" class="my-3"></v-divider>
@@ -24,14 +24,6 @@
       </v-list>
       <template v-slot:append>
         <v-layout class="pb-3">
-          <!-- <v-btn
-            :ripple="config.ripple"
-            justify-start
-            plain
-            color=""
-            class="text-capitalize"
-            ><v-icon>mdi-cog</v-icon></v-btn
-          > -->
           <v-spacer></v-spacer>
           <v-btn
             :ripple="config.ripple"

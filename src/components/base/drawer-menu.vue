@@ -9,10 +9,11 @@
     </v-row>
     <v-row no-gutters
       ><v-col align="center"
-        ><v-list-item-title>{{ user.name }} </v-list-item-title>
-        <v-list-item-subtitle class="caption">{{
-          user.practice
-        }}</v-list-item-subtitle></v-col
+        ><v-list-item-title>Welcome, {{ user.name }} </v-list-item-title>
+        <v-list-item-subtitle class="caption">
+          <v-icon small left class="mb-1">mdi-home</v-icon
+          >{{ user.practice }}</v-list-item-subtitle
+        ></v-col
       ></v-row
     >
   </div>
