@@ -1,5 +1,8 @@
 # vuejs-natalcomfort-portal
 
+The ambassador portal for natalcomfort.com medical professionals to place orders in a private area.
+
+
 ## Project setup
 ```
 npm install
